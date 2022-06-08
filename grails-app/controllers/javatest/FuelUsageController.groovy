@@ -1,5 +1,7 @@
 package javatest
 
+import grails.converters.JSON
+
 class FuelUsageController {
 
     FuelCostService fuelCostService
@@ -12,9 +14,11 @@ class FuelUsageController {
   }
 
     def saveNewCar(){
-       render fuelCostService.saveNewCar("Focus","Ford","Diesel",6.2,1.6)
+       Car car =  fuelCostService.saveNewCar("Focus","Ford","Diesel",6.2,1.6)
+        render car as JSON
     }
-
-
+    def showAllCars() {
+        render view: 'showAllCars', model: [carList: Car.list()]
+    }
 
 }

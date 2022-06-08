@@ -1,5 +1,6 @@
 package javatest
 
+import grails.converters.JSON
 import grails.gorm.transactions.Transactional
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -34,13 +35,15 @@ static final String FUEL_SERVICE_ADRESS ="https://www.autocentrum.pl/paliwa/ceny
             Producer producer = Producer.findOrSaveByName(producerName)
             FuelType fuelType = FuelType.findOrSaveByName(fuelTypeName)
 
-            Car car = new Car(model: model ,
+            Car.findOrSaveWhere(model: model ,
                     producer: producer,
             fuelType: fuelType,
             fuelConsumption: fuelConsumption,
             engineVolume:engineVolume)
 
-            car.save()
         }
+
+
+
 
 }

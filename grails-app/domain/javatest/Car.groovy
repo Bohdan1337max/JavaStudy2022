@@ -1,9 +1,9 @@
 package javatest
 
 class Car {
-    String model
-    String producer
-    String fuelType
+    Model model
+    Producer producer
+    FuelType fuelType
     Double engineVolume
     Double fuelConsumption
 

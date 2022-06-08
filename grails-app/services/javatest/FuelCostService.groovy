@@ -30,23 +30,10 @@ static final String FUEL_SERVICE_ADRESS ="https://www.autocentrum.pl/paliwa/ceny
                        Double engineVolume)
         {
 
-            Model model = Model.findByName(modelName)
-            if(model == null) {
-                model = new Model(name: modelName)
-                model.save()
-            }
+            Model model = Model.findOrSaveByName(modelName)
+            Producer producer = Producer.findOrSaveByName(producerName)
+            FuelType fuelType = FuelType.findOrSaveByName(fuelTypeName)
 
-            Producer producer = Producer.findByName(producerName)
-            if(producer == null) {
-                producer = new Producer(name: producerName)
-                producer.save()
-            }
-
-            FuelType fuelType = FuelType.findByName(fuelTypeName)
-            if(fuelType == null) {
-                fuelType = new FuelType(name: fuelTypeName)
-                fuelType.save()
-            }
             Car car = new Car(model: model ,
                     producer: producer,
             fuelType: fuelType,
